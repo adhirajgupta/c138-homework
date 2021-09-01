@@ -1,5 +1,4 @@
 import pandas as pd
-import csv
 
 shared_articles = pd.read_csv("shared_articles.csv")
 users_interactions = pd.read_csv("users_interactions.csv")
