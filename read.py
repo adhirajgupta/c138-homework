@@ -13,11 +13,23 @@ shared_articles.drop(index_names,inplace=True)
 print("shared_articles shape =",shared_articles.shape)
 
 
-
 total_views = []
+total_bookmarks = []
+total_comment = []
+total_follow = []
 for i in shared_articles["contentId"]:
     # print(i)
     temp_val = users_interactions.loc[users_interactions["contentId"] == i]
-    total_views.append(temp_val)
+    views = temp_val.loc[users_interactions["eventType"] == "VIEW"]
+    bookmarks = temp_val.loc[users_interactions["eventType"] == "BOOKMARK"]
+    comment = temp_val.loc[users_interactions["eventType"] == "COMMENT CREATED"]
+    follow = temp_val.loc[users_interactions["eventType"] == "FOLLOW"]
+    total_views.append(views)
+    total_bookmarks.append(bookmarks)
+    total_comment.append(comment)
+    total_follow.append(follow)
 
-print(len(total_views))
+print(total_views)
+print(total_bookmarks)
+print(total_comment)
+print(total_follow)
